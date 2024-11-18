@@ -1,5 +1,7 @@
-﻿using LagoVista.Client.Core.ViewModels.DeviceAccess;
+﻿using LagoVista.Client.Core.Interfaces;
+using LagoVista.Client.Core.ViewModels.DeviceAccess;
 using LagoVista.Core.Commanding;
+using LagoVista.Core.IOC;
 using LagoVista.Core.ViewModels;
 using LagoVista.IoT.DeviceManagement.Core.Models;
 using System.Collections.Generic;
@@ -12,6 +14,8 @@ namespace LagoVista.Client.Core.ViewModels.DeviceSetup
     public class MyDevicesViewModel : ListViewModelBase<DeviceSummary>
     {
         IEnumerable<DeviceSummary> _originalDeviceList;
+
+        public IDeviceManagementClient DeviceManagementClient => SLWIOC.Get<IDeviceManagementClient>();
 
         public MyDevicesViewModel()
         {

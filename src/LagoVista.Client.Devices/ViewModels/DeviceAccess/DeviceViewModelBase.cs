@@ -508,6 +508,8 @@ namespace LagoVista.Client.Core.ViewModels.DeviceAccess
         }
 
 
+        public IDeviceManagementClient DeviceManagementClient => SLWIOC.Get<IDeviceManagementClient>();
+
         private SensorStates _state = SensorStates.Nominal;
         public SensorStates SystemState
         {

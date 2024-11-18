@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>LagoVista.XPlat.Core</id>
-    <version>3.0.2741.1106</version>
+    <version>3.0.2742.0936</version>
     <authors>Software Logistics, LLC</authors>
     <owners>Software Logistics, LLC</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
@@ -12,7 +12,7 @@
     <copyright>Copyright Software Logistics - 2024</copyright>
     <tags>HomeAutomation IoT LagoVista</tags>
     <icon>LagoVistaIcon.png</icon>
-    <releaseNotes>Build Date: 11/17/2024 4:06:48 PM UTC</releaseNotes>
+    <releaseNotes>Build Date: 11/18/2024 2:36:04 PM UTC</releaseNotes>
     <repository url="https://www.github.com/lagovista" type="git" branch="master"></repository>
     <dependencies>
       <group targetFramework="netstandard2.1">
@@ -20,7 +20,7 @@
         <dependency id="Microsoft.NETCore.Platforms" version="5.0.2" />
         <dependency id="Xamarin.Forms" version="5.0.0.2083" />
         <dependency id="Xamarin.Forms.Maps" version="5.0.0.2083" />
-        <dependency id="LagoVista.Client.Core" version="3.0.2741.1106" />
+        <dependency id="LagoVista.Client.Core" version="3.0.2742.0936" />
       </group>
     </dependencies>
   </metadata>

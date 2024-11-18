@@ -76,13 +76,13 @@ namespace LagoVista.Client.Core.Net
                 _authManager.RefreshToken = response.Result.RefreshToken;
                 _authManager.AppInstanceId = response.Result.AppInstanceId;
                 _authManager.RefreshTokenExpirationUTC = response.Result.RefreshTokenExpiresUTC;
-                _logger.AddCustomEvent(LogLevel.Message, "RawRestClient_RenewRefreshTokenAsync", "Access Token Renewed with Refresh Token");
+                _logger.AddCustomEvent(LogLevel.Message, "[RawRestClient_RenewRefreshTokenAsync]", "Access Token Renewed with Refresh Token");
                 await _authManager.PersistAsync();
                 return InvokeResult.Success;
             }
             else
             {
-                _logger.AddCustomEvent(LogLevel.Error, "RawRestClient_RenewRefreshTokenAsync", "Could Not Renew Access Token", response.ErrorsToKVPArray());
+                _logger.AddCustomEvent(LogLevel.Error, "[RawRestClient_RenewRefreshTokenAsync]", "Could Not Renew Access Token", response.ErrorsToKVPArray());
                 var result = new InvokeResult();
                 result.Concat(response);
                 throw new Exceptions.CouldNotRenewTokenException();
@@ -135,20 +135,22 @@ namespace LagoVista.Client.Core.Net
                 try
                 {
 
+                    _logger.AddCustomEvent(LogLevel.Message, "[RawResetClient_PerformCall]", "Begin call");
                     var start = DateTime.Now;
                     var response = await call();
                     var delta = DateTime.Now - start;
-                    _logger.AddCustomEvent(LogLevel.Message, "RawResetClient_PerformCall", "Begin call");
-
+                    
                     if (response.IsSuccessStatusCode)
                     {
-                        _logger.AddCustomEvent(LogLevel.Message, "RawResetClient_PerformCall", "Call Success");
+                        _logger.AddCustomEvent(LogLevel.Message, "[RawResetClient_PerformCall]", "Call Success", delta.ToString().ToKVP("time"));
                         rawResponse = RawResponse.FromSuccess(await response.Content.ReadAsStringAsync());
+                        delta = DateTime.Now - start;
+                        _logger.AddCustomEvent(LogLevel.Message, "[RawResetClient_PerformCall]", "Got RAW Response", delta.ToString().ToKVP("time"));
                     }
                     else if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
                     {
-                        _logger.AddCustomEvent(LogLevel.Message, "RawResetClient_PerformCall", "Call Unauthorized");
-                        _logger.AddCustomEvent(LogLevel.Error, "RawRestClient_PerformCall", "401 From Server");
+                        _logger.AddCustomEvent(LogLevel.Message, "]RawResetClient_PerformCall]", "Call Unauthorized");
+                        _logger.AddCustomEvent(LogLevel.Error, "[RawRestClient_PerformCall]", "401 From Server");
                         retry = ((await RenewRefreshToken()).Successful);
                         if (!retry)
                         {
@@ -160,11 +162,11 @@ namespace LagoVista.Client.Core.Net
 
                         await Task.Delay(attempts * 100);
                         retry = attempts++ < 5;
-                        _logger.AddCustomEvent(LogLevel.Message, "RawResetClient_PerformCall", $"Bad Gateway {attempts} will retry {retry}");
+                        _logger.AddCustomEvent(LogLevel.Message, "[RawResetClient_PerformCall]", $"Bad Gateway {attempts} will retry {retry}");
                     }
                     else
                     {
-                        _logger.AddCustomEvent(LogLevel.Message, "RawRestClient_PerformCall", $"Http Error {(int)response.StatusCode}");
+                        _logger.AddCustomEvent(LogLevel.Message, "[RawRestClient_PerformCall]", $"Http Error {(int)response.StatusCode}");
                         /* Check for 401 (I think, if so then attempt to get a new access token,  */
                         rawResponse = RawResponse.FromHttpFault((int)response.StatusCode, $"{ClientResources.Err_GeneralErrorCallingServer} : HTTP{(int)response.StatusCode} - {response.ReasonPhrase}");
                     }
@@ -172,19 +174,19 @@ namespace LagoVista.Client.Core.Net
                 }
                 catch (Exceptions.CouldNotRenewTokenException ex)
                 {
-                    _logger.AddCustomEvent(LogLevel.Message, "RawResetClient_PerformCall", $"Could Not Renew from Refreh Token {attempts} will not retry");
-                    _logger.AddException("RawResetClient_PerformCall", ex, ex.Message.ToKVP("type"));
+                    _logger.AddCustomEvent(LogLevel.Message, "[RawResetClient_PerformCall]", $"Could Not Renew from Refreh Token {attempts} will not retry");
+                    _logger.AddException("[RawResetClient_PerformCall[", ex, ex.Message.ToKVP("type"));
                     _callSemaphore.Release();
                     throw;
                 }
                 catch (TaskCanceledException tce)
                 {
-                    _logger.AddException("RawRestClient_PerformCall_TaskCancelled", tce, tce.Message.ToKVP("type"));
+                    _logger.AddException("[RawRestClient_PerformCall_TaskCancelled]", tce, tce.Message.ToKVP("type"));
                     rawResponse = RawResponse.FromException(tce, tce.CancellationToken.IsCancellationRequested);
                 }
                 catch (Exception ex)
                 {
-                    _logger.AddException("RawRestClient_PerformCall", ex, ex.Message.ToKVP("type"));
+                    _logger.AddException("[RawRestClient_PerformCall]", ex, ex.Message.ToKVP("type"));
                     rawResponse = RawResponse.FromException(ex);
                 }
             }
@@ -407,8 +409,6 @@ namespace LagoVista.Client.Core.Net
             await AddCachedResponseAsync(path, response);
 
             return response.ToListResponse<TResponseModel>();
-
         }
-
     }
 }

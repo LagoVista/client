@@ -159,7 +159,6 @@ namespace LagoVista.Client.Core.ViewModels
             return new KeyValuePair<string, object>(key, value);
         }
 
-        public IDeviceManagementClient DeviceManagementClient => SLWIOC.Get<IDeviceManagementClient>();
         public IAppConfig AppConfig => SLWIOC.Get<IAppConfig>();
 
         public bool IsEditing
