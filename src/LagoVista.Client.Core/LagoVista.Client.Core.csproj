@@ -1,0 +1,56 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <VersionPrefix>1.2</VersionPrefix>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <SignAssembly>true</SignAssembly>
+    <DebugType>Full</DebugType>
+    <AssemblyOriginatorKeyFile>clientcore.key.snk</AssemblyOriginatorKeyFile>
+    <AssemblyVersion>1.2.1.1</AssemblyVersion>
+    <FileVersion>1.2.1.1</FileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='iOS Build|AnyCPU'" />
+  <ItemGroup>
+    <Compile Remove="Orgs\**" />
+    <EmbeddedResource Remove="Orgs\**" />
+    <None Remove="Orgs\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\esptool.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Icons\ReadMe.txt" />
+    <Content Include="Resources\esptool.py">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="LagoVista.Core" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.Core.Authentication" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.Core.Networking" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.IoT.Logging" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.UserAdmin.Models" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.MediaServices.Models" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.IoT.DeviceAdmin.Models" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.IoT.Deployment.Models" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.IoT.DeviceManagement.Models" Version="3.0.2741.1101" />
+    <PackageReference Include="LagoVista.IoT.Pipeline.Models" Version="3.0.2741.1101" />
+    <PackageReference Include="Microsoft.AppCenter" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.6" />
+    <PackageReference Include="Microsoft.AppCenter.Distribute" Version="5.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\ClientResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ClientResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ClientResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ClientResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

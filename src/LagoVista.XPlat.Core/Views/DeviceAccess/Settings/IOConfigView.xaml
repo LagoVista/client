@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        xmlns:ctls="clr-namespace:LagoVista.XPlat.Core.Controls.Common;assembly=LagoVista.XPlat.Core" 
+        Title="Inputs and Outputs"
+        x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.Settings.IOConfigView">
+    <pge:LagoVistaContentPage.MainContent>
+        <ListView ItemsSource="{Binding MenuOptions}" HasUnevenRows="true" >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ctls:NavigationViewCell Command="{Binding Command}" Text="{Binding Name}" 
+                                             Detail="{Binding Details}" Icon="{Binding FontIconKey}" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

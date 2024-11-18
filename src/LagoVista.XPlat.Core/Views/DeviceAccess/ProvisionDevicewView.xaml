@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:trs="clr-namespace:LagoVista.XPlat.Core.Extensions;assembly=LagoVista.XPlat.Core"
+             Title="{trs:ClientTranslate Provion_Title}"
+
+             x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.ProvisionDevicewView">
+    <pge:LagoVistaContentPage.MainContent>
+        <Grid Padding="20">
+            <Grid IsVisible="{Binding Config, Converter={StaticResource NotNullVisibilityConverter}}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid>
+                    <Grid.RowDefinitions>
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition Width="120" />
+                    </Grid.ColumnDefinitions>
+                    <pge:Label Text="{trs:ClientTranslate Provision_DeviceType}" Grid.Row="0" Grid.Column="1" />
+                    <pge:Label Text="{Binding Platform}" Grid.Row="0" Grid.Column="2" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_Firmware_SKU}" Grid.Row="1" Grid.Column="1" />
+                    <pge:Label Text="{Binding FirmwareSKU}" Grid.Row="1" Grid.Column="2" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_Firmware_Version}" Grid.Row="2" Grid.Column="1" />
+                    <pge:Label Text="{Binding FirmwareVersion}" Grid.Row="2" Grid.Column="2" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_Hardware_Version}" Grid.Row="3" Grid.Column="1" />
+                    <pge:Label Text="{Binding HardwareVersion}" Grid.Row="3" Grid.Column="2" />
+                </Grid>
+                <StackLayout Grid.Row="1" Grid.ColumnSpan="2">
+                    <StackLayout Orientation="Horizontal">
+                        <pge:Button Text="{trs:ClientTranslate Provision_WriteProfile}" Command="{Binding WriteConfigurationCommand}" />
+                        <pge:Button Text="{trs:ClientTranslate Provision_ResetProfile}" Command="{Binding ResetConfigurationCommand}" />
+                        <pge:Button Text="{trs:ClientTranslate Provision_Reboot}" Command="{Binding RebootCommand}" />
+                        <pge:Button Text="{trs:ClientTranslate Provision_Commission}" Command="{Binding CommissionCommand}" />
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout Grid.Row="2">
+                    <pge:Label Text="{trs:ClientTranslate Provision_DeviceId}" />
+                    <pge:Entry Text="{Binding Path=Config.DeviceId, Mode=TwoWay}" />
+
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_VerboseLogging}" />
+                    <CheckBox IsChecked="{Binding Path=Config.VerboseLogging, Mode=TwoWay}" />
+
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_CellEnabled}" />
+                    <CheckBox IsChecked="{Binding Path=Config.CellEnabled, Mode=TwoWay}" />
+
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_WiFiEnabled}" />
+                    <CheckBox IsChecked="{Binding Path=Config.WiFiEnabled, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_WiFi_SSID}" />
+                    <pge:Entry Text="{Binding Path=Config.WiFiSSID, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_WiFi_Pwd}" />
+                    <pge:Entry Text="{Binding Path=Config.WiFiPWD, Mode=TwoWay}" />
+                </StackLayout>
+                <StackLayout Grid.Row="2" Grid.Column="1">
+                    <pge:Label Text="{trs:ClientTranslate Provision_Server_Host}" />
+                    <pge:Entry Text="{Binding Path=Config.SrvrHostName, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_Server_Anonymous}" />
+                    <CheckBox IsChecked="{Binding Path=Config.Anonymous, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_Server_UserId}" IsVisible="{Binding !Config.ServerAnonymous}" />
+                    <pge:Entry Text="{Binding Path=Config.SrvrUID, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_Server_Password}" IsVisible="{Binding !Config.ServerAnonymous}" />
+                    <pge:Entry Text="{Binding Path=Config.SrvrPWD, Mode=TwoWay}"  Margin="0,0,0,20"/>
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_GPSEnabled}" />
+                    <CheckBox IsChecked="{Binding Path=Config.GPSEnabled, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_GPSUpdateRate}" />
+                    <pge:Entry Text="{Binding Path=Config.GPSUpdateRate, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_BaudRate}" />
+                    <pge:Entry Text="{Binding Path=Config.GPRSModemBaudRate, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_PingUpdateRate}" />
+                    <pge:Entry Text="{Binding Path=Config.PingRate, Mode=TwoWay}" />
+
+                    <pge:Label Text="{trs:ClientTranslate Provision_SrvrUpdateRate}" />
+                    <pge:Entry Text="{Binding Path=Config.SendUpdateRate, Mode=TwoWay}" />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

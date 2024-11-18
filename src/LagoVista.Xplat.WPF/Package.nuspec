@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>LagoVista.XPlat.WPF</id>
+    <version>3.0.2741.1106</version>
+    <authors>Software Logistics, LLC</authors>
+    <owners>Software Logistics, LLC</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <projectUrl>https://www.nuviot.com</projectUrl>
+    <iconUrl>http://bytemaster.blob.core.windows.net/icons/LagoVistaIcon.png</iconUrl>
+    <description>Core Mobile Client Functionality for the LagoVista Devices, IoT and Home Automation Frameworks</description>
+    <copyright>Copyright Software Logistics - 2024</copyright>
+    <tags>HomeAutomation IoT LagoVista</tags>
+    <icon>LagoVistaIcon.png</icon>
+    <releaseNotes>Build Date: 11/17/2024 4:06:48 PM UTC</releaseNotes>
+    <repository url="https://www.github.com/lagovista" type="git" branch="master"></repository>
+    <dependencies>
+      <group targetFramework="net6.0-windows">
+        <dependency id="System.IO.Ports" version="5.0.1" />
+        <dependency id="LagoVista.Client.Core" version="3.0.2741.1106" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="LagoVistaIcon.png" target="LagoVistaIcon.png" />
+    <file src="bin\release\net6.0-windows\LagoVista.XPlat.WPF.dll" target="lib\net6.0-windows\LagoVista.XPlat.WPF.dll" />
+    <file src="bin\release\net6.0-windows\LagoVista.XPlat.WPF.pdb" target="lib\net6.0-windows\LagoVista.XPlat.WPF.pdb" />
+  </files>
+</package>

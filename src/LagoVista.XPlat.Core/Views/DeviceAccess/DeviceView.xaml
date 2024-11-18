@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+             xmlns:ctls="clr-namespace:LagoVista.XPlat.Core.Controls.Common;assembly=LagoVista.XPlat.Core"
+             xmlns:trs="clr-namespace:LagoVista.XPlat.Core.Extensions;assembly=LagoVista.XPlat.Core"
+             RightMenu="Edit"
+             EditCommand="{Binding EditDeviceCommand}"
+             LeftMenu="Cancel"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="{trs:ClientTranslate DeviceView_Title}"
+             x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.DeviceView">
+    <!--
+                Device Summary (Basic Device Info, and BT connection info)
+                Properties (Things that can be set via device config)
+                Details (Attributes)
+                More
+                (
+                    Live Console (BT)
+                    Live Messages
+                    Messages 
+                    Data Archives
+                    IO Config
+                    Components
+                    DFU
+                    Provision
+                    Device Twin
+                )
+            -->
+
+    <pge:LagoVistaContentPage.TabbedContent>
+        <pge:TabContentHolder>
+            <pge:TabContent>
+                <Grid Padding="10" IsVisible="{Binding Device, Converter={StaticResource NotNullVisibilityConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="33*" />
+                        <ColumnDefinition Width="66*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="{Binding DeviceId}" />
+                    <StackLayout Grid.Column="1">
+                        <Rectangle WidthRequest="40" HeightRequest="40" BackgroundColor="{Binding ConnectedViaBluetooth, Converter={StaticResource RedGreenConverter}}" ></Rectangle>
+                        <Label Text="{Binding ConnectionStatus}" />
+                    </StackLayout>
+                    
+                    <pge:Label Text="{Binding Device.DeviceNameLabel}" Grid.Column="0" Grid.Row="1" Style="{StaticResource LabelContent}"  />
+                    <pge:Label Text="{Binding Device.Name}" Grid.Column="1" Grid.Row="1" Style="{StaticResource ValueContent}"  />
+
+                    <pge:Label Text="{Binding Device.DeviceIdLabel}" Grid.Column="0" Grid.Row="2" Style="{StaticResource LabelContent}" />
+                    <pge:Label Text="{Binding Device.DeviceId}" Grid.Column="1" Grid.Row="2" Style="{StaticResource ValueContent}" />
+
+                    <pge:Label Text="{trs:ClientTranslate DeviceView_Status}" Grid.Column="0" Grid.Row="3" Style="{StaticResource LabelContent}"  />
+                    <pge:Label Text="{Binding Device.Status.Text}" Grid.Column="1" Grid.Row="3" Style="{StaticResource ValueContent}"  />
+
+                    <pge:Label Text="{Binding Device.DeviceTypeLabel}" Grid.Column="0" Grid.Row="4" Style="{StaticResource LabelContent}" />
+                    <pge:Label Text="{Binding Device.DeviceType.Text}" Grid.Column="1" Grid.Row="4" Style="{StaticResource ValueContent}" />
+
+                    <pge:Label Text="{trs:ClientTranslate DeviceView_LastContact}" Grid.Row="5" Grid.Column="0" Style="{StaticResource LabelContent}"   />
+                    <pge:Label Text="{Binding Device.LastContact, Converter={StaticResource DatePrinterConverter}}" Grid.Row="5" Grid.Column="1" Style="{StaticResource ValueContent}"  />
+                </Grid>
+            </pge:TabContent>
+            <pge:TabContent>
+                <Grid WidthRequest="500">
+                <pge:FormViewer Form="{Binding FormAdapter}" WidthRequest="400" />
+                </Grid>
+            </pge:TabContent>
+            <pge:TabContent>
+                <pge:KVPRepeater ItemSource="{Binding DeviceAttributes, Mode=TwoWay}" />
+            </pge:TabContent>
+            <pge:TabContent>
+                <ListView ItemsSource="{Binding DeviceMessages}" HasUnevenRows="True" SeparatorVisibility="None"  >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell IsEnabled="False">
+                                <Grid Padding="20,10,10,10" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="33*" />
+                                        <ColumnDefinition Width="66*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                        <RowDefinition Height="auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <pge:Label Text="Message Id" Grid.Row="0" />
+                                    <pge:Label Text="Timestamp"  Grid.Row="1" />
+
+                                    <pge:Label Text="{Binding MessageId}" Grid.Row="0" Grid.Column="1" />
+                                    <pge:Label Text="{Binding Timestamp, Converter={StaticResource DatePrinterConverter}}"  Grid.Row="1" Grid.Column="1" />
+
+                                    <pge:KVPRepeater ItemSource="{Binding Properties}" Grid.Row="2" Grid.ColumnSpan="2" />
+
+                                    <BoxView Grid.ColumnSpan="2" Grid.Row="3" HeightRequest="1" VerticalOptions="End" Color="Silver"  />
+                                </Grid> 
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </pge:TabContent>
+            <pge:TabContent>
+                <ListView ItemsSource="{Binding MenuOptions}" SelectedItem="{Binding SelectedMenuOption}" HasUnevenRows="true">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ctls:NavigationViewCell Command="{Binding Command}" Text="{Binding Name}" Icon="{Binding FontIconKey}" />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </pge:TabContent>
+        </pge:TabContentHolder>
+    </pge:LagoVistaContentPage.TabbedContent>
+    <pge:LagoVistaContentPage.TabBar>
+        <pge:TabBar>
+            <pge:Tab Label="Device" Icon="fa-microchip" />
+            <pge:Tab Label="Properties" Icon="fa-gear" />
+            <pge:Tab Label="Details" Icon="fa-dashboard" />
+            <pge:Tab Label="Messages" Icon="fa-commenting" />
+            <pge:Tab Label="More" Icon="fa-bars" />
+        </pge:TabBar>
+    </pge:LagoVistaContentPage.TabBar>
+</pge:LagoVistaContentPage>

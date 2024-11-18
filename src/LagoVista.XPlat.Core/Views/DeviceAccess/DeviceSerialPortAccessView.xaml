@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage 
+    xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:trs="clr-namespace:LagoVista.XPlat.Core.Extensions;assembly=LagoVista.XPlat.Core"
+    xmlns:ctls="clr-namespace:LagoVista.XPlat.Core.Controls.Common;assembly=LagoVista.XPlat.Core"
+    LeftMenu="Back"
+    x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.DeviceSerialPortAccessView"
+    Title="{trs:ClientTranslate DeviceSerialPort_View}" >
+
+    <pge:LagoVistaContentPage.MainContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid IsVisible="{Binding SelectedPort, Converter={StaticResource NotNullVisibilityConverter} }">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" ></ColumnDefinition>
+                    <ColumnDefinition Width="*" ></ColumnDefinition>
+                    <ColumnDefinition Width="auto" ></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding ClosePortCommand}" Text="Close Port" IsVisible="{Binding IsPortOpen}" Grid.Column="0" />
+                <Button Command="{Binding OpenPortCommand}" Text="Open Port" IsVisible="{Binding IsPortClosed}" Grid.Column="0" />
+                <Label Text="{Binding SelectedPort.Name}" FontSize="Medium" Grid.Column="1" />
+                <Button Command="{Binding DoneCommand}" Text="Done"  Grid.Column="2" />
+            </Grid>
+            <ListView  ItemsSource="{Binding SerialPorts}" HasUnevenRows="True" SelectedItem="{Binding SelectedPort, Mode=TwoWay}" IsVisible="{Binding SelectedPort, Converter={StaticResource NullVisibilityConverter}}" Grid.Row="1" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ctls:NavigationViewCell Icon="fa-microchip" Text="{Binding Name}" Detail="{Binding Id}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView ItemsSource="{Binding Lines}" Background="Black" Margin="10" IsVisible="{Binding SelectedPort, Converter={StaticResource NotNullVisibilityConverter}}" Grid.Row="1" x:Name="SerialPortOutput">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Label FontSize="Body" FontFamily="Consolas" TextColor="Yellow" Text="{Binding .}" />
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Grid.Row="2"  >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Entry ReturnCommand="{Binding SendCommand}" Text="{Binding SendText, Mode=TwoWay}" />
+                <StackLayout Grid.Column="1" >
+                    <Label Text="Append CR" />
+                    <CheckBox IsChecked="{Binding AppendCR, Mode=TwoWay}"  />
+                </StackLayout>
+                <StackLayout Grid.Column="2">
+                    <Label Text="Append LF" />
+                    <CheckBox IsChecked="{Binding AppendLF, Mode=TwoWay}"  />
+                </StackLayout>
+            </Grid>
+        </Grid>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage >

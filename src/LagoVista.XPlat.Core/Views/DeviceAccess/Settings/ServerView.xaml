@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        BackgroundColor="Black" 
+        x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.Settings.ServerView">
+    <pge:LagoVistaContentPage.MainContent>
+        <ListView ItemsSource="{Binding Lines}" Background="Black" Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label FontSize="Body" FontFamily="Consolas" TextColor="Yellow" Text="{Binding Name}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

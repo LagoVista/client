@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage    xmlns="http://xamarin.com/schemas/2014/forms"
+                             xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+                             RightMenu="Next"
+                             RightMenuCommand="{Binding NextCommand}"
+                             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                             x:Class="LagoVista.XPlat.Core.Views.DeviceSetup.ConnectHardwareView">
+    <pge:LagoVistaContentPage.MainContent>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <CheckBox  IsChecked="{Binding HardwareConnected}"/>
+                <Label Text="I've connected my Hardware to my Battery" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <CheckBox  IsChecked="{Binding PowerLightOn}"/>
+                <Label Text="I see the red power light" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <CheckBox  IsChecked="{Binding ConnecctionLightOn}"/>
+                <Label Text="I see the Green Connection light is flashing" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <CheckBox  IsChecked="{Binding SlowBeeping}"/>
+                <Label Text="I hear a slow beeping" />
+            </StackLayout>
+        </StackLayout>
+
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

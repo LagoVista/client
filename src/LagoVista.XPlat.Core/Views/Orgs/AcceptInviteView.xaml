@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage
+    xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:LagoVista.XPlat.Core.Extensions"    
+    x:Class="LagoVista.XPlat.Core.Views.Orgs.AcceptInviteView"
+    HasToolBar="False">
+    <pge:LagoVistaContentPage.MainContent>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <pge:Image FileName="{Binding AppConfig.AppLogo}" UWPPath="Assets" Grid.Column="1" />
+            <ScrollView Grid.Row="1" Grid.Column="1">
+                <StackLayout Grid.Row="1" Margin="20" WidthRequest="300" HorizontalOptions="Center" >
+                    <pge:Label Text="{ext:ClientTranslate AcceptInvite_Accept_Help}" IsVisible="{Binding IsLoggedIn}" />
+                    <pge:Button Command="{Binding AcceptInviteCommnad}" Text="{ext:ClientTranslate AcceptInvite_Accept}"
+                                HeightRequest="48" IsVisible="{Binding IsLoggedIn}"/>
+
+                    <pge:Label Text="{ext:ClientTranslate AcceptInvite_AcceptAndLogin_Help}" IsVisible="{Binding IsNotLoggedIn}"  />
+                    <pge:Button Command="{Binding AcceptAndLoginCommand}" Text="{ext:ClientTranslate AcceptInvite_AcceptAndLogin}" 
+                                HeightRequest="48" IsVisible="{Binding IsNotLoggedIn}"/>
+
+                    <pge:Label Text="{ext:ClientTranslate AcceptInvite_AcceptAndRegister_Help}"  />
+                    <pge:Button Command="{Binding AcceptAndRegisterCommand}" Text="{ext:ClientTranslate AcceptInvite_AcceptAndRegister}" 
+                                HeightRequest="48" />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage    xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               LeftMenu="Cancel" RightMenu="Save"
+               x:Class="LagoVista.XPlat.Core.Views.DeviceSetup.MyDeviceView">
+    <pge:LagoVistaContentPage.MainContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+            <Grid Margin="0,25,0,0" RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Width}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height}"
+                        >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.20*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.20*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.20*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.20*"></ColumnDefinition>
+                    <ColumnDefinition Width="0.20*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <pge:Icon Grid.Column="3" 
+                              IconKey="fa-bluetooth" 
+                              TextColor="DarkGray"
+                              FontSize="36"
+                              Margin="0,20,0,0"
+                              IsVisible="{Binding IsBLEDisconnected}"
+                              HorizontalTextAlignment="Center" />
+
+                <pge:Icon Grid.Column="3" 
+                              IconKey="fa-bluetooth" 
+                              FontSize="36"
+                              TextColor="{Binding HeaderForegroundColor}"
+                              Margin="0,20,0,0"
+                              IsVisible="{Binding IsBLEConnected}"
+                              HorizontalTextAlignment="Center" />
+
+                <pge:Icon Grid.Column="4" 
+                              IconKey="fa-wifi" 
+                              FontSize="36"
+                              TextColor="DarkGray"                              
+                              Margin="0,20,0,0"
+                              IsVisible="{Binding IsDeviceDisconnectedToServer}"
+                              HorizontalTextAlignment="Center" />
+
+                <pge:Icon Grid.Column="4" 
+                              IconKey="fa-wifi" 
+                              TextColor="{Binding HeaderForegroundColor}"
+                              FontSize="36"
+                              Margin="0,20,0,0"
+                              IsVisible="{Binding IsDeviceConnectedToServer}"
+                              HorizontalTextAlignment="Center" />
+
+                <Label Grid.Row="1" Grid.ColumnSpan="5" Text="{Binding SystemStatus}" TextColor="{Binding HeaderForegroundColor}"
+                           HorizontalTextAlignment="Center" />
+            </Grid>
+
+
+            <Label Grid.Row="1" Text="{Binding DeviceNameLabel}"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            <pge:Entry Grid.Row="2" Text="{Binding DeviceName}"  />
+        </Grid>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

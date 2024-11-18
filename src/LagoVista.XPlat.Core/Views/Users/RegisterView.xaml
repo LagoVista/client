@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pge:LagoVistaContentPage     
+    xmlns:pge="clr-namespace:LagoVista.XPlat.Core"
+    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:LagoVista.XPlat.Core.Extensions"    
+    HasToolBar="False"
+    x:Class="LagoVista.XPlat.Core.Views.Users.RegisterView"
+    Title="{ext:ClientTranslate Register_Title}">
+    <pge:LagoVistaContentPage.MainContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <pge:Image FileName="{Binding AppConfig.AppLogo}" UWPPath="Assets" Grid.Column="1" />
+            <ScrollView Grid.Column="1" Grid.Row="1">
+                <StackLayout  >
+                    <pge:Label Text="{ext:ClientTranslate Register_FirstName}" />
+                    <pge:Entry Text="{Binding RegisterModel.FirstName, Mode=TwoWay}" Placeholder="{ext:ClientTranslate Register_FirstName_WaterMark}"  />
+
+                    <pge:Label Text="{ext:ClientTranslate Register_LastName}" />
+                    <pge:Entry Text="{Binding RegisterModel.LastName, Mode=TwoWay}" Placeholder="{ext:ClientTranslate Register_LastName_WaterMark}"  />
+
+                    <pge:Label Text="{ext:ClientTranslate Register_Email}" />
+                    <pge:Entry Text="{Binding RegisterModel.Email, Mode=TwoWay}"  Placeholder="{ext:ClientTranslate Register_Email_WaterMark}"  Keyboard="Email"  />
+
+                    <pge:Label Text="{ext:ClientTranslate Register_Password}" />
+                    <pge:Entry Text="{Binding RegisterModel.Password, Mode=TwoWay}"  Placeholder="{ext:ClientTranslate Register_Password_Watermark}" 
+                               IsPassword="True" Keyboard="Plain" />
+
+                    <pge:Label Text="{ext:ClientTranslate Register_Confirm_Password}" />
+                    <pge:Entry Text="{Binding ConfirmPassword, Mode=TwoWay}" Placeholder="{ext:ClientTranslate Register_ConfirmPassword_Watermark}" 
+                               IsPassword="True" Keyboard="Plain" Margin="0,0,0,15" />
+
+                    <pge:Button Command="{Binding RegisterCommand}" Text="{ext:ClientTranslate Register_Title}" HeightRequest="42" WidthRequest="100" />
+                    <pge:HyperLinkLabel NavigateCommand="{Binding CancelCommand}" Text="{ext:ClientTranslate Common_Cancel}"  Margin="0,15,0,0"  />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

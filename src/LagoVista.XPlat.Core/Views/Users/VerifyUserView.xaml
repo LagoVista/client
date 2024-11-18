@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<pge:LagoVistaContentPage     
+    xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:LagoVista.XPlat.Core.Extensions"
+    HasToolBar="False"
+    x:Class="LagoVista.XPlat.Core.Views.Users.VerifyUserView"
+    Title="{ext:ClientTranslate Common_Login}">
+    <pge:LagoVistaContentPage.MainContent>
+
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <pge:Image FileName="{Binding AppConfig.AppLogo}" UWPPath="Assets" Grid.Column="1" />
+            <ScrollView Grid.Column="1" Grid.Row="1">
+                <StackLayout   >
+                    <pge:Label IsVisible="{Binding ShowPhoneConfirm}" Text="{ext:ClientTranslate Verify_PhoneNumber}" />
+                    <pge:Entry IsVisible="{Binding ShowPhoneConfirm}" Text="{Binding PhoneNumber, Mode=TwoWay}" 
+                               Placeholder="{ext:ClientTranslate Verify_PhoneNumber_Watermark}"  />
+
+                    <pge:Button IsVisible="{Binding ShowPhoneConfirm}" Command="{Binding SendSMSConfirmationCommand}" Text="{ext:ClientTranslate Verify_SendSMS}"
+                                HeightRequest="42" Margin="0,0,0,10" />
+
+                    <pge:Label IsVisible="{Binding ShowPhoneConfirm}" Text="{ext:ClientTranslate Verify_ReceivedCode}"  />
+                    <pge:Entry IsVisible="{Binding ShowPhoneConfirm}" Text="{Binding SMSCode, Mode=TwoWay}" 
+                               Placeholder="{ext:ClientTranslate Verify_ReceivedCode_Watermark}"  />
+
+                    <pge:Button IsVisible="{Binding ShowEmailConfirm}" Command="{Binding SendEmailConfirmationCommand}" 
+                                Text="{ext:ClientTranslate Verify_SendEmail}" HeightRequest="42" />
+
+                    <pge:Button IsVisible="{Binding ShowPhoneConfirm}" Command="{Binding ConfirmEnteredSMSCommand}" 
+                                Text="{ext:ClientTranslate Verify_ConfirmCode}" HeightRequest="42" Margin="0,0,0,10" />
+
+                    <pge:Button IsVisible="{Binding ShowSkipStep}" Command="{Binding SkipStepCommand}" 
+                                Text="{ext:ClientTranslate Verify_SkipStep}" HeightRequest="42" Margin="0,0,0,10" />
+
+
+                    <pge:HyperLinkLabel NavigateCommand="{Binding LogoutCommand}" Text="{ext:ClientTranslate Common_Logout}"  />
+                </StackLayout>
+
+            </ScrollView>
+        </Grid>
+
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

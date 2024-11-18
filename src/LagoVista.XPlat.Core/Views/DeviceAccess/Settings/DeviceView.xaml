@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+        xmlns:ctls="clr-namespace:LagoVista.XPlat.Core.Controls.Devices"                          
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        Title="{Binding FormTitle}"       
+        LeftMenu="Back"
+        RightMenu="Save"
+        x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.Settings.DeviceView">
+    <pge:LagoVistaContentPage.MainContent>
+        <ListView ItemsSource="{Binding Characteristics}"  Margin="10" HasUnevenRows="True">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ctls:GATTAttributeEditor Label="{Binding Name}" Value="{Binding Value, Mode=TwoWay}"  AttributeType="{Binding Type}" Height="128" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

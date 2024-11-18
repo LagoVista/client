@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage
+    xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:ext="clr-namespace:LagoVista.XPlat.Core.Extensions"    
+    LeftMenu="Cancel"
+    x:Class="LagoVista.XPlat.Core.Views.Orgs.InviteUserView"
+    Title="{ext:ClientTranslate InviteUser_Title}">
+    <pge:LagoVistaContentPage.MainContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="160" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="300" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <pge:Image FileName="{Binding AppConfig.AppLogo}" UWPPath="Assets" Grid.Column="1" />
+            <ScrollView Grid.Row="1" Grid.Column="1">
+                <StackLayout  >
+                    <pge:Label Text="{Binding InviteUserHelpMessage}" Margin="0,0,0,20" />
+
+                    <pge:Label Text="{ext:ClientTranslate InviteUser_Name}" FontAttributes="Bold"  />
+                    <pge:Entry Text="{Binding Model.Name, Mode=TwoWay}" Placeholder="{ext:ClientTranslate InviteUser_Name_Watermark}" Keyboard="Plain" />
+
+                    <pge:Label Text="{ext:ClientTranslate InviteUser_Email}" />
+                    <pge:Entry Text="{Binding Model.Email, Mode=TwoWay}" Placeholder="{ext:ClientTranslate InviteUser_Email_Watermark}" Keyboard="Email"  />
+
+                    <pge:Label Text="{ext:ClientTranslate InviteUser_Message}" />
+                    <Editor Text="{Binding Model.Message, Mode=TwoWay}" Keyboard="Plain" HeightRequest="120" Margin="0,0,0,20" />
+
+                    <pge:Button Command="{Binding InviteUserCommand}" Text="{ext:ClientTranslate InviteUser_Submit}" HeightRequest="48" />
+                    <pge:HyperLinkLabel NavigateCommand="{Binding CancelCommand}" Text="{ext:ClientTranslate Common_Cancel}" Margin="0,15,0,0"  />
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

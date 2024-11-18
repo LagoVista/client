@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage     
+            xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+            xmlns:trs="clr-namespace:LagoVista.XPlat.Core.Extensions;assembly=LagoVista.XPlat.Core"
+            xmlns="http://xamarin.com/schemas/2014/forms"
+            LeftMenu="Back"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:ctls="clr-namespace:LagoVista.XPlat.Core.Controls.Common;assembly=LagoVista.XPlat.Core"
+            x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.DevicesView"
+   
+            Title="{trs:ClientTranslate DevicesView_Title}" >
+    <pge:LagoVistaContentPage.MainContent>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <pge:Entry FontSize="Medium" Margin="10" TextChangedCommand="{Binding SearchNowCommand}" Placeholder="{trs:ClientTranslate DevicesView_SearchWatermark}" TextClearedCommand="{Binding FilterClearedCommand}" />
+
+            <StackLayout IsVisible="{Binding IsListEmpty}" Margin="20,50,20,0" Grid.Row="1" >
+                <Label Text="{trs:ClientTranslate DevicesView_NoDevice}" FontSize="Large"  />
+            </StackLayout>
+
+            <ListView ItemsSource="{Binding GattConnection.DiscoveredDevices}" HasUnevenRows="True" SelectedItem="{Binding SelectedDevice, Mode=TwoWay}"
+                       IsVisible="{Binding ListHasData}" Grid.Row="1" >
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ctls:NavigationViewCell Icon="fa-microchip" Text="{Binding DeviceName}" Detail="{Binding DeviceId}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

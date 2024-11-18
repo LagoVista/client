@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage
+    xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+    xmlns:ext="clr-namespace:LagoVista.XPlat.Core.Extensions"    
+    xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"    
+    x:Class="LagoVista.XPlat.Core.Views.Orgs.OrgEditorView"
+    LeftMenu="Menu"  RightMenu="Save"
+    Title="{ext:ClientTranslate OrgEditor_Title}">
+    <pge:LagoVistaContentPage.MainContent>
+        <StackLayout>
+            <pge:Image FileName="{Binding AppConfig.AppLogo}" UWPPath="Assets" Grid.Column="1" />
+            <pge:FormViewer Form="{Binding FormAdapter}" />
+        </StackLayout>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>

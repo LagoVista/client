@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pge:LagoVistaContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:pge="clr-namespace:LagoVista.XPlat.Core;assembly=LagoVista.XPlat.Core"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        Title="WiFi Settings"             
+        LeftMenu="Back"
+        RightMenu="Save"
+        x:Class="LagoVista.XPlat.Core.Views.DeviceAccess.Settings.WiFiView">
+    <pge:LagoVistaContentPage.MainContent>
+        <ScrollView>
+            <TableView HasUnevenRows="True" Intent="Settings">
+                <TableRoot>
+                    <TableSection>
+                        <TextCell Text="WiFi SSID" />
+                        <TextCell Text="WiFi Password" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+        </ScrollView>
+    </pge:LagoVistaContentPage.MainContent>
+</pge:LagoVistaContentPage>
