@@ -37,6 +37,11 @@ namespace LagoVista.Client.Core.Net
         readonly INetworkService _networkService;
         readonly SemaphoreSlim _callSemaphore;
 
+        public event EventHandler BeginCall;
+
+        public event EventHandler EndCall;
+
+
         public RawRestClient(HttpClient httpClient, INetworkService networkService, IDeviceInfo deviceInfo, IStorageService storageService,
                     IAppConfig appConfig, IAuthClient authClient, IAuthManager authManager, ILogger logger)
         {
