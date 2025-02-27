@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<lgv:PageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:lgv="clr-namespace:LagoVista.XPlat.Maui.Pages"
+             x:Class="LagoVista.XPlat.Maui.Pages.SplashPage"
+             Title="SplashPage">
+    <VerticalStackLayout>
+        <Label Text="Welcome to Software Logistics!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button Command="{Binding LoginCommand}" Text="Login"></Button>
+    </VerticalStackLayout>
+</lgv:PageBase>

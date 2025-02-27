@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<lgv:PageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+              xmlns:lgv="clr-namespace:LagoVista.XPlat.Maui.Pages"
+              xmlns:vm="clr-namespace:LagoVista.Client.Core.Forms;assembly=LagoVista.Client.Core"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              x:Class="LagoVista.XPlat.Maui.Pages.ListViewer">
+    <VerticalStackLayout>
+        <Label TextColor="White" Text="{Binding Items.Title}" />
+
+        <ListView ItemsSource="{Binding Items.Model}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label TextColor="White" Text="{Binding Name}" />
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</lgv:PageBase>

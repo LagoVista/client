@@ -15,6 +15,7 @@ using LagoVista.Client.Core.Exceptions;
 using LagoVista.Client.Core.Interfaces;
 using LagoVista.Core.ViewModels;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace LagoVista.Client.Core.ViewModels
 {
@@ -40,13 +41,19 @@ namespace LagoVista.Client.Core.ViewModels
             await Popups.ShowAsync(bldr.ToString());
         }
 
-        protected void ShowView<TViewModel>()
+        
+        protected void ShowView<TViewModel>(params KeyValuePair<string, object>[] args)
         {
             var launchArgs = new ViewModelLaunchArgs()
             {
                 ViewModelType = typeof(TViewModel),
                 LaunchType = LaunchTypes.View
             };
+
+            foreach(var arg in args)
+            {
+                launchArgs.Parameters.Add(arg.Key, arg.Value);
+            }   
 
             ViewModelNavigation.NavigateAsync(launchArgs);
         }
@@ -127,6 +134,8 @@ namespace LagoVista.Client.Core.ViewModels
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.Message);
+                Debug.WriteLine(ex.StackTrace);
                 IsBusy = false;
                 Logger.AddException("IoTAppViewModelBase_PerformNetworkOperation", ex);
                 await Popups.ShowAsync(ClientResources.Common_ErrorCommunicatingWithServer + "\r\n\r\n" + ex.Message);
@@ -159,6 +168,7 @@ namespace LagoVista.Client.Core.ViewModels
             return new KeyValuePair<string, object>(key, value);
         }
 
+        public IDeviceManagementClient DeviceManagementClient => SLWIOC.Get<IDeviceManagementClient>();
         public IAppConfig AppConfig => SLWIOC.Get<IAppConfig>();
 
         public bool IsEditing

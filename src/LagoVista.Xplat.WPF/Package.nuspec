@@ -2,28 +2,28 @@
 <package>
   <metadata>
     <id>LagoVista.XPlat.WPF</id>
-    <version>3.0.2742.0936</version>
+    <version>3.0.2842.1349</version>
     <authors>Software Logistics, LLC</authors>
     <owners>Software Logistics, LLC</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://www.nuviot.com</projectUrl>
     <iconUrl>http://bytemaster.blob.core.windows.net/icons/LagoVistaIcon.png</iconUrl>
     <description>Core Mobile Client Functionality for the LagoVista Devices, IoT and Home Automation Frameworks</description>
-    <copyright>Copyright Software Logistics - 2024</copyright>
+    <copyright>Copyright Software Logistics - 2025</copyright>
     <tags>HomeAutomation IoT LagoVista</tags>
     <icon>LagoVistaIcon.png</icon>
-    <releaseNotes>Build Date: 11/18/2024 2:36:04 PM UTC</releaseNotes>
+    <releaseNotes>Build Date: 2/26/2025 6:49:05 PM UTC</releaseNotes>
     <repository url="https://www.github.com/lagovista" type="git" branch="master"></repository>
     <dependencies>
-      <group targetFramework="net8.0-windows">
-        <dependency id="System.IO.Ports" version="9.0.0" />
-        <dependency id="LagoVista.Client.Core" version="3.0.2742.0936" />
+      <group targetFramework="net6.0-windows">
+        <dependency id="System.IO.Ports" version="5.0.1" />
+        <dependency id="LagoVista.Client.Core" version="3.0.2842.1349" />
       </group>
     </dependencies>
   </metadata>
   <files>
     <file src="LagoVistaIcon.png" target="LagoVistaIcon.png" />
-    <file src="bin\release\net8.0-windows\LagoVista.XPlat.WPF.dll" target="lib\net8.0-windows\LagoVista.XPlat.WPF.dll" />
-    <file src="bin\release\net8.0-windows\LagoVista.XPlat.WPF.pdb" target="lib\net8.0-windows\LagoVista.XPlat.WPF.pdb" />
+    <file src="bin\release\net6.0-windows\LagoVista.XPlat.WPF.dll" target="lib\net6.0-windows\LagoVista.XPlat.WPF.dll" />
+    <file src="bin\release\net6.0-windows\LagoVista.XPlat.WPF.pdb" target="lib\net6.0-windows\LagoVista.XPlat.WPF.pdb" />
   </files>
 </package>

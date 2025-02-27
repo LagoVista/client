@@ -219,8 +219,6 @@ namespace LagoVista.Core.WPF.PlatformSupport
             return Task.FromResult(fileName);
         }
 
-
-
         public Task<byte[]> ReadAllBytesAsync(string fileName)
         {
             fileName = GetAppRelativeFileNameIfNecessary(fileName);

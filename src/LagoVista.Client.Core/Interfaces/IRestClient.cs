@@ -17,21 +17,20 @@ namespace LagoVista.Client.Core
     public interface IRestClient
     {
         event EventHandler BeginCall;
-
         event EventHandler EndCall;
 
         Task<InvokeResult> RenewRefreshToken();
-        Task<RawResponse> GetAsync(String path, CancellationTokenSource tokenSource = null);
-        Task<RawResponse> PostAsync(String path, String payload, CancellationTokenSource tokenSource = null);
-        Task<RawResponse> PutAsync(String path, String payload, CancellationTokenSource tokenSource = null);
-        Task<RawResponse> DeleteAsync(String path, CancellationTokenSource tokenSource = null);
+        Task<RawResponse> GetAsync(String path, CancellationTokenSource tokenSource = null, bool waitCursor = true);
+        Task<RawResponse> PostAsync(String path, String payload, CancellationTokenSource tokenSource = null, bool waitCursor = true);
+        Task<RawResponse> PutAsync(String path, String payload, CancellationTokenSource tokenSource = null, bool waitCursor = true);
+        Task<RawResponse> DeleteAsync(String path, CancellationTokenSource tokenSource = null, bool waitCursor = true);
 
-        Task<InvokeResult> PostAsync<TModel>(String path, TModel model, CancellationTokenSource cancellationTokenSource = null) where TModel : class;
-        Task<InvokeResult> PutAsync<TModel>(String path, TModel model, CancellationTokenSource cancellationTokenSource = null) where TModel : class;
+        Task<InvokeResult> PostAsync<TModel>(String path, TModel model, CancellationTokenSource cancellationTokenSource = null, bool waitCursor = true) where TModel : class;
+        Task<InvokeResult> PutAsync<TModel>(String path, TModel model, CancellationTokenSource cancellationTokenSource = null, bool waitCursor = true) where TModel : class;
 
-        Task<InvokeResult<TResponseModel>> PostAsync<TModel, TResponseModel>(String path, TModel model, CancellationTokenSource cancellationTokenSource = null) where TModel : class where TResponseModel : class;
+        Task<InvokeResult<TResponseModel>> PostAsync<TModel, TResponseModel>(String path, TModel model, CancellationTokenSource cancellationTokenSource = null, bool waitCursor = true) where TModel : class where TResponseModel : class;
 
-        Task<InvokeResult<TResponseModel>> GetAsync<TResponseModel>(String path, CancellationTokenSource cancellationTokenSource = null) where TResponseModel : class;
-        Task<ListResponse<TResponseModel>> GetListResponseAsync<TResponseModel>(String path, ListRequest listRequest, CancellationTokenSource cancellationTokenSource = null) where TResponseModel : class;
+        Task<InvokeResult<TResponseModel>> GetAsync<TResponseModel>(String path, CancellationTokenSource cancellationTokenSource = null, bool waitCursor = true) where TResponseModel : class;
+        Task<ListResponse<TResponseModel>> GetListResponseAsync<TResponseModel>(String path, ListRequest listRequest = null, CancellationTokenSource cancellationTokenSource = null, bool waitCursor = true) where TResponseModel : class;
     }
 }

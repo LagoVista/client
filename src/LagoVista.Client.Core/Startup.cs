@@ -4,6 +4,7 @@ using LagoVista.Client.Core.Net;
 using LagoVista.Core.Interfaces;
 using LagoVista.Core.IOC;
 using LagoVista.Core.Networking.Interfaces;
+using LagoVista.Core.PlatformSupport;
 using LagoVista.UserAdmin.Interfaces;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -15,12 +16,16 @@ namespace LagoVista.Client.Core
 {
     public static class Startup
     {
-        public static void Init(ServerInfo serverInfo)
+        public static void Init(ServerInfo serverInfo, bool headless = false)
         {
             SLWIOC.RegisterSingleton<ServerInfo>(serverInfo);
             SLWIOC.RegisterSingleton<IAuthClient>(new AuthClient());
             SLWIOC.RegisterSingleton<ITokenManager, TokenManager>();
-            SLWIOC.RegisterSingleton<IAuthManager, AuthManager>();
+            if(headless)
+                SLWIOC.RegisterSingleton<IAuthManager, HeadlessAuthManager>();
+            else
+                SLWIOC.RegisterSingleton<IAuthManager, AuthManager>();
+
 
             var client = new HttpClient
             {
@@ -30,7 +35,6 @@ namespace LagoVista.Client.Core
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             SLWIOC.RegisterSingleton<HttpClient>(client);
-
             SLWIOC.RegisterSingleton<IRestClient, RawRestClient>();
         }
     }

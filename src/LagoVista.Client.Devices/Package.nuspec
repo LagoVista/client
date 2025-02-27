@@ -2,25 +2,21 @@
 <package>
   <metadata>
     <id>LagoVista.Client.Devices</id>
-    <version>3.0.2742.0936</version>
+    <version>3.0.2842.1349</version>
     <authors>Software Logistics, LLC</authors>
     <owners>Software Logistics, LLC</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <projectUrl>https://www.nuviot.com</projectUrl>
     <iconUrl>http://bytemaster.blob.core.windows.net/icons/LagoVistaIcon.png</iconUrl>
     <description>Provides wrappers for device management rest services.</description>
-    <copyright>Copyright Software Logistics - 2024</copyright>
+    <copyright>Copyright Software Logistics - 2025</copyright>
     <tags>HomeAutomation IoT LagoVista</tags>
     <icon>LagoVistaIcon.png</icon>
-    <releaseNotes>Build Date: 11/18/2024 2:36:04 PM UTC</releaseNotes>
+    <releaseNotes>Build Date: 2/26/2025 6:49:05 PM UTC</releaseNotes>
     <repository url="https://www.github.com/lagovista" type="git" branch="master"></repository>
     <dependencies>
       <group targetFramework="netstandard2.1">
-        <dependency id="LagoVista.IoT.DeviceAdmin.Models" version="3.0.2742.0936" />
-        <dependency id="LagoVista.IoT.Deployment.Models" version="3.0.2742.0936" />
-        <dependency id="LagoVista.IoT.DeviceManagement.Models" version="3.0.2742.0936" />
-        <dependency id="LagoVista.IoT.Pipeline.Models" version="3.0.2742.0936" />
-        <dependency id="LagoVista.Client.Core" version="3.0.2742.0936" />
+        <dependency id="LagoVista.Client.Core" version="3.0.2842.1349" />
       </group>
     </dependencies>
   </metadata>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<lgv:PageBase xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LagoVista.XPlat.Maui.Pages.LoginPage"
+             x:DataType="vm:LoginViewModel"
+             xmlns:vm="clr-namespace:LagoVista.Client.Core.ViewModels.Auth;assembly=LagoVista.Client.Core"
+             xmlns:lgv="clr-namespace:LagoVista.XPlat.Maui.Pages"
+             Title="Login Page">
+    <VerticalStackLayout>
+        <Label Text="Email" VerticalOptions="Center"  HorizontalOptions="Center" />
+        <Editor Placeholder="Username" Text="{Binding EmailAddress}"></Editor>
+        <Label Text="Password" VerticalOptions="Center" HorizontalOptions="Center" />
+        <Editor Placeholder="Username" Text="{Binding Password}"></Editor>
+        <Button Command="{Binding LoginCommand}" Text="Login"></Button>
+    </VerticalStackLayout>
+</lgv:PageBase>
