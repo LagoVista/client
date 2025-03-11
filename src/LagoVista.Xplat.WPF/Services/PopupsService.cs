@@ -1,5 +1,7 @@
-﻿using LagoVista.Core.IOC;
+﻿using LagoVista.Core.Interfaces;
+using LagoVista.Core.IOC;
 using LagoVista.Core.PlatformSupport;
+using LagoVista.Core.ViewModels;
 using Microsoft.Win32;
 using System;
 using System.IO;
@@ -215,6 +217,13 @@ namespace LagoVista.Core.WPF.PlatformSupport
             {
                 return null;
             }
+        }
+
+        public Task<bool> ShowModalAsync<TModalWindow, TViewModel>(TViewModel viewModal)
+            where TModalWindow : IModalWindow
+            where TViewModel : IViewModel
+        {
+            throw new NotImplementedException();
         }
     }
 }

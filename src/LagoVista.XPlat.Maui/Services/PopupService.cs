@@ -1,4 +1,6 @@
-﻿using LagoVista.Core.PlatformSupport;
+﻿using LagoVista.Core.Interfaces;
+using LagoVista.Core.PlatformSupport;
+using LagoVista.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +44,13 @@ namespace LagoVista.XPlat.Maui.Services
         public Task ShowAsync(string message)
         {
             return Application.Current.MainPage.DisplayAlert("Alert", message, "OK");
+        }
+
+        public Task<bool> ShowModalAsync<TModalWindow, TViewModel>(TViewModel viewModal)
+            where TModalWindow : IModalWindow
+            where TViewModel : IViewModel
+        {
+            throw new NotImplementedException();
         }
 
         public Task<string> ShowOpenFileAsync(string fileMask = "")
